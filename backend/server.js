@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const cors = require("cors");
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const adminRoutes = require('./routes/admin');
@@ -8,6 +9,7 @@ const adminRoutes = require('./routes/admin');
 dotenv.config();
 
 const app = express();
+app.use(cors({ origin: "http://localhost:5173", credentials: true })); // Enable CORS
 app.use(express.json());
 
 // Function to seed HR account
