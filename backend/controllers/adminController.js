@@ -23,7 +23,7 @@ exports.concludeResignation = async (req, res) => {
     const user = await User.findById(resignation.employeeId);
     const subject = approved ? 'Resignation Approved' : 'Resignation Rejected';
     const text = approved ? `Your resignation is approved. Exit date: ${lwd}` : 'Your resignation has been rejected.';
-    sendEmail(`${user.username}@example.com`, subject, text); // Adjust email domain as needed
+    sendEmail(`${user.username}@example.com`, subject, text); 
     res.status(200).json({ message: 'Resignation concluded' });
   } catch (error) {
     res.status(500).json({ error: error.message });
