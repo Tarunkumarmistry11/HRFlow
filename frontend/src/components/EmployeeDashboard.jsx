@@ -1,4 +1,4 @@
-import{ useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function EmployeeDashboard() {
@@ -9,7 +9,7 @@ function EmployeeDashboard() {
   useEffect(() => {
     const fetchResignation = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/user/resignations', {
+        const response = await axios.get('https://hrflow-69y5.onrender.com/api/user/resignations', {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
         setResignation(response.data.data[0]);
@@ -22,7 +22,7 @@ function EmployeeDashboard() {
 
   const submitResignation = async () => {
     try {
-      const response = await axios.post('http://localhost:8080/api/user/resign', { lwd }, {
+      const response = await axios.post('https://hrflow-69y5.onrender.com/api/user/resign', { lwd }, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setResignation({ _id: response.data.data.resignation._id, status: 'pending', intendedLwd: lwd });
@@ -33,7 +33,7 @@ function EmployeeDashboard() {
 
   const submitExitInterview = async () => {
     try {
-      await axios.post('http://localhost:8080/api/user/responses', { responses }, {
+      await axios.post('https://hrflow-69y5.onrender.com/api/user/responses', { responses }, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       alert('Exit interview submitted');

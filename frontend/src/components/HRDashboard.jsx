@@ -1,4 +1,4 @@
-import{ useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function HRDashboard() {
@@ -9,11 +9,11 @@ function HRDashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resRes = await axios.get('http://localhost:8080/api/admin/resignations', {
+        const resRes = await axios.get('https://hrflow-69y5.onrender.com/api/admin/resignations', {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
         setResignations(resRes.data.data);
-        const exitRes = await axios.get('http://localhost:8080/api/admin/exit_responses', {
+        const exitRes = await axios.get('https://hrflow-69y5.onrender.com/api/admin/exit_responses', {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
         setExitResponses(exitRes.data.data);
@@ -26,7 +26,7 @@ function HRDashboard() {
 
   const concludeResignation = async (id, approved) => {
     try {
-      await axios.put('http://localhost:8080/api/admin/conclude_resignation', {
+      await axios.put('https://hrflow-69y5.onrender.com/api/admin/conclude_resignation', {
         resignationId: id, approved, lwd: approved ? exitDate : null
       }, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
